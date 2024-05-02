@@ -1,0 +1,129 @@
+<script>
+  import { T, useThrelte, useRender } from "@threlte/core";
+  import { ContactShadows, Float, Grid, OrbitControls } from "@threlte/extras";
+  import Stars from "./Stars.svelte";
+  import { Vector3, Raycaster, Vector2, PMREMGenerator, Color } from "three";
+  import { onMount } from "svelte";
+  import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
+  import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
+  import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
+  import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
+
+  let cameraPosition = new Vector3(14.8835, -0.43037, 0.01861);
+  let sphereRef,
+    intersectionPoint,
+    planeRef,
+    spaceShipRef,
+    environmentMap,
+    cameraRef;
+  let { camera, renderer, scene } = useThrelte();
+  let composer = new EffectComposer(renderer);
+
+  let pmremGenerator = new PMREMGenerator(renderer);
+
+  useRender(() => {
+    scene.background = null;
+    environmentMap = pmremGenerator.fromScene(scene, 0, 0.1, 1000);
+    scene.background = new Color("#598889").multiplyScalar(0.05);
+
+    composer.render();
+  });
+
+  onMount(async () => {
+    const dat = await import("dat.gui");
+    const gui = new dat.GUI();
+
+    let params = {
+      bloomStrength: 0.3,
+      bloomThreshold: 0,
+      bloomRadius: 0,
+    };
+
+    composer.setSize(window.innerWidth, window.innerHeight);
+
+    let renderPass = new RenderPass(scene, camera.current);
+    composer.addPass(renderPass);
+
+    let bloomPass = new UnrealBloomPass(
+      new Vector2(window.innerWidth, window.innerHeight),
+      params.bloomStrength,
+      params.bloomThreshold,
+      params.bloomRadius,
+    );
+
+    gui.add(params, "bloomStrength", 0.0, 10.0).onChange(function (value) {
+      bloomPass.strength = Number(value);
+    });
+
+    gui.add(params, "bloomThreshold", 0.0, 10.0).onChange(function (value) {
+      bloomPass.threshold = Number(value);
+    });
+
+    gui.add(params, "bloomRadius", 0.0, 10.0).onChange(function (value) {
+      bloomPass.radius = Number(value);
+    });
+    composer.addPass(bloomPass);
+
+    let outputPass = new OutputPass();
+    composer.addPass(outputPass);
+
+    function onPointerMove(event) {
+      const pointer = new Vector2();
+      pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
+      pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+      const raycaster = new Raycaster();
+      raycaster.setFromCamera(pointer, $camera);
+
+      const intersects = raycaster.intersectObject(planeRef);
+      if (intersects.length > 0) intersectionPoint = intersects[0]?.point;
+      sphereRef.position.copy(intersects[0].point);
+    }
+    window.addEventListener("pointermove", onPointerMove);
+    return () => {
+      window.removeEventListener("pointermove", onPointerMove);
+    };
+  });
+</script>
+
+<T.PerspectiveCamera
+  position={[cameraPosition.x, cameraPosition.y, cameraPosition.z]}
+  rotation={[1.56867, 1.414108, -1.568643]}
+  makeDefault
+  bind:ref={cameraRef}
+>
+  <OrbitControls
+    enableDamping
+    on:change={(e) => {
+      console.log(cameraRef);
+    }}
+  />
+</T.PerspectiveCamera>
+
+<T.DirectionalLight
+  intensity={2}
+  position={[0, 15, 0]}
+  castShadow
+  shadow.bias={-0.0001}
+/>
+<T.AmbientLight intensity={2} />
+
+<Grid
+  visible={false}
+  fadeDistance={60}
+  sectionThickness={0}
+  cellColor={0xfffffff}
+/>
+
+<T.Mesh position.z={-4} bind:ref={planeRef} visible={false}>
+  <T.PlaneGeometry args={[200, 40]} />
+
+  <T.MeshStandardMaterial color={"#dd9d31"} transparent opacity={0.35} />
+</T.Mesh>
+
+<T.Mesh bind:ref={sphereRef} visible={false}>
+  <T.SphereGeometry args={[0.5, 32, 32]} />
+  <T.MeshStandardMaterial color={"#ff0000"} />
+</T.Mesh>
+
+<Stars />
