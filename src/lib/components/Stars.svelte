@@ -33,7 +33,7 @@
     stars.forEach((star) => {
       star.position[0] += (star.speed + delta) * 0.1;
       if (star.position[0] > 50) {
-        star.position[0] = -20;
+        star.position[0] = -0;
       }
     });
     stars = stars;
