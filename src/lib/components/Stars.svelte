@@ -8,7 +8,6 @@
   const starsCount = 400;
   let stars = [];
   const starColors = ["#f0c74f", "#6C9897", "#ff0000", "#ffffff", "#112d28"];
-  const speed = 10;
 
   function randomGenerator(min, max) {
     return Math.random() * (max - min) + min;
@@ -25,7 +24,7 @@
       color: new Color(starColors[Math.floor(randomGenerator(0, 5))])
         .convertSRGBToLinear()
         .multiplyScalar(3.5),
-      speed: speed,
+      speed: randomGenerator(10, 50),
     });
   }
 
