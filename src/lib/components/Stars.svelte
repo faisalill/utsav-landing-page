@@ -2,10 +2,11 @@
   import { T, useFrame } from "@threlte/core";
   import { useTexture, InstancedMesh, Instance } from "@threlte/extras";
   import { DoubleSide, Color } from "three";
+  import { onMount } from "svelte";
 
   const map = useTexture("/star.png");
 
-  const starsCount = 400;
+  const starsCount = 120;
   let stars = [];
   const starColors = ["#f0c74f", "#6C9897", "#ff0000", "#ffffff", "#112d28"];
 
@@ -20,11 +21,11 @@
         randomGenerator(-10, 10),
         randomGenerator(-10, 10),
       ],
-      scaleX: 15,
+      scaleX: randomGenerator(3, 15),
       color: new Color(starColors[Math.floor(randomGenerator(0, 5))])
         .convertSRGBToLinear()
         .multiplyScalar(3.5),
-      speed: randomGenerator(10, 50),
+      speed: randomGenerator(20, 50),
     });
   }
 

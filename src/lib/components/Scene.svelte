@@ -22,6 +22,10 @@
   let composer = new EffectComposer(renderer);
   let bloomPass;
   let isBloomPassAnimated;
+  let animatedParams = {
+    speed: 0,
+    scale: 0,
+  };
 
   let pmremGenerator = new PMREMGenerator(renderer);
 
@@ -71,8 +75,12 @@
     let outputPass = new OutputPass();
     composer.addPass(outputPass);
 
-    sectionOneAnimation(cameraRef, bloomPass);
+    sectionOneAnimation(cameraRef, bloomPass, document);
   });
+
+  function randomGenerator(min, max) {
+    return Math.random() * (max - min) + min;
+  }
 </script>
 
 <T.PerspectiveCamera
@@ -80,12 +88,7 @@
   makeDefault
   bind:ref={cameraRef}
 >
-  <OrbitControls
-    enableDamping
-    on:change={(e) => {
-      console.log(cameraRef.position);
-    }}
-  />
+  <OrbitControls enableDamping />
 </T.PerspectiveCamera>
 
 <T.DirectionalLight
