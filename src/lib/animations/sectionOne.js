@@ -232,12 +232,25 @@ export function sectionOneAnimation(cameraRef, bloomPass, document) {
         ease: Expo.easeInOut
       })
 
+      tl.fromTo(".br", {
+        opacity: 0,
+        y: 100
+      }, {
+        opacity: 1,
+        y: 0,
+        ease: Expo.easeInOut
+      })
 
-
+      tl.fromTo("#events", {
+        opacity: 0,
+        y: 100
+      }, {
+        opacity: 1,
+        y: 0,
+        ease: Expo.easeInOut
+      })
 
     }
-
   })
-
 
 }

@@ -53,8 +53,9 @@
   #logo-container {
     perspective: 1000px;
     background-image: url("/vintage-bg.jpg");
-    background-size: contain;
+    background-size: cover;
     background-repeat: repeat;
+    background-attachment: fixed;
   }
   #logo {
     width: 100vw;

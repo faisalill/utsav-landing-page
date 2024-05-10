@@ -6,13 +6,13 @@
 </script>
 
 <div id="main-wrapper">
-  <div id="navbar-wrapper">
+  <div id="navbar-wrapper" class="sticky top-0 backdrop-blur">
     <nav
       class="flex justify-around items-center bg-black bg-opacity-70 h-20 md:h-32"
       id="navbar"
     >
       <div
-        class="font-angel_raphsody text-5xl md:text-7xl my-8 text-transparent bg-gradient-to-b from-yellow-200 to-yellow-600 bg-clip-text"
+        class="font-angel_raphsody text-5xl lg:text-7xl my-8 text-transparent bg-gradient-to-b from-yellow-200 to-yellow-600 bg-clip-text"
         id="nav-logo-text"
       >
         Utsav
@@ -34,10 +34,10 @@
       x="0px"
       y="0px"
       width="1920px"
-      viewBox="0 0 1920 1"
+      viewBox="0 0 1920 10"
       enable-background="new 0 0 1920 27"
       xml:space="preserve"
-      class="rotate-180 fill-black w-full h-2 opacity-70"
+      class="rotate-180 fill-black w-full h-16 opacity-70 hidden"
     >
       <path
         d="M1906.688,12.029c-1.653-1.78-3.943-0.347-5.823-0.883c-0.623,0.442-0.879,1.208-1.873,1.044
@@ -248,7 +248,7 @@
         Theme
       </h1>
       <p
-        class="font-voyage_bold text-xl md:text-3xl text-center px-4 md:px-56 text-black p-3 rounded-xl hover:cursor-pointer"
+        class="font-voyage_bold text-xl md:text-3xl text-center px-4 md:px-72 text-black p-3 rounded-xl hover:cursor-pointer"
       >
         This year's theme explores the vastness of time, from the echoes of
         history to the possibilities of the future. Prepare to be transported by
@@ -266,7 +266,7 @@
       </h1>
       <img src="/vv.jpeg" class="rounded-full hiddenn" />
       <p
-        class="font-voyage_bold text-xl md:text-3xl text-center hiddenn px-4 md:px-56 text-black p-3 rounded-xl hover:cursor-pointer"
+        class="font-voyage_bold text-xl md:text-3xl text-center hiddenn px-4 md:px-72 text-black p-3 rounded-xl hover:cursor-pointer"
       >
         UTSAV, the Annual Cultural Fest of B.M.S. College of Engineering has
         been one of the most splendid cultural events in India and the pride of
@@ -279,7 +279,7 @@
 
       <img src="/bmsce.webp" class="rounded-full h-auto w-52 hiddenn" />
       <p
-        class="font-voyage_bold text-xl md:text-3xl md:text-3xl text-center px-4 md:px-56 text-black hiddenn p-3 rounded-xl hover:cursor-pointer"
+        class="font-voyage_bold text-xl md:text-3xl md:text-3xl text-center px-4 md:px-72 text-black hiddenn p-3 rounded-xl hover:cursor-pointer"
       >
         B. M. S. College of Engineering (BMSCE) stands as an autonomous
         institution in Bengaluru, its roots tracing back to 1946, thanks to the
@@ -299,7 +299,7 @@
         Our Sponsors
       </h1>
       <p
-        class="font-voyage_bold text-2xl md:text-3xl text-center px-56 text-black p-3 hiddenn rounded-xl hover:cursor-pointer"
+        class="font-voyage_bold text-2xl md:text-3xl text-center px-72 text-black p-3 hiddenn rounded-xl hover:cursor-pointer"
       >
         SPONSORS.......
       </p>
@@ -319,7 +319,7 @@
           <LinkedIn />
         </div>
         <div
-          class="flex-col items-center text-center font-voyage_bold text-2xl text-black"
+          class="flex-col items-center text-center font-voyage_bold text-4xl text-black"
         >
           <h1 class="text-4xl hiddenn">B. M. S. College of Engineering</h1>
           <h4 class="hiddenn">
