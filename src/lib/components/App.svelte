@@ -19,14 +19,14 @@
 ></div>
 
 <div
-  class="w-screen absolute top-0 left-0 z-20 text-white bg-black"
+  class="w-screen absolute opacity-0 top-0 left-0 z-20 text-white bg-black"
   id="logo-container"
 >
   <Main />
 </div>
 
 <div
-  class="w-screen h-screen absolute opacity-0 pointer-events-none top-0 left-0 z-40 flex justify-center items-center text-6xl text-white text-opacity-70 font-voyage_bold"
+  class="w-screen h-screen absolute top-0 left-0 z-40 flex justify-center items-center text-6xl text-white text-opacity-70 font-voyage_bold"
   id="warp-btn-wrapper"
 >
   <button
