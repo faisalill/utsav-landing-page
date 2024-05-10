@@ -4,6 +4,7 @@
 
 body {
   perspective: 1000px;
+  scroll-behavior: smooth;
 }
 
 @layer base {

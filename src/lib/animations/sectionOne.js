@@ -1,6 +1,5 @@
 import { animationStore } from '$lib/stores/animations.js'
 import gsap, { Expo } from 'gsap'
-import { document } from 'postcss';
 
 const cameraStart = {
   x: 62.581234,
@@ -118,7 +117,13 @@ export function sectionOneAnimation(cameraRef, bloomPass, document) {
         ease: 'expo.in',
       }, `-=${starsDuration}`)
 
-      tl.set("#fog", { scale: 1 })
+      tl.set("#fog", {
+        scale: 1,
+        onComplete: () => {
+          document.querySelector("#canvas-wrapper").remove()
+          console.log("THree.js Canvas Removed")
+        }
+      })
 
       const fogClearanceTime = 2.5;
 

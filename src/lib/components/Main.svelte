@@ -3,10 +3,80 @@
   import Instagram from "$lib/icons/Instagram.svelte";
   import LinkedIn from "$lib/icons/LinkedIn.svelte";
   import Twitter from "$lib/icons/Twitter.svelte";
+  import Menu from "$lib/icons/Menu.svelte";
+  import Cross from "$lib/icons/Cross.svelte";
+  import gsap, { Expo } from "gsap";
+
+  function closeMenu() {
+    gsap.to("#menu-drawer", {
+      left: "100vw",
+      ease: Expo.easeInOut,
+    });
+  }
+
+  function scrollInto(id) {
+    gsap.to("#menu-drawer", {
+      left: "100vw",
+      ease: Expo.easeInOut,
+      onComplete: () => {
+        const targetElement = document.getElementById(id);
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: "smooth" });
+        }
+      },
+    });
+  }
 </script>
 
+<div
+  class="h-screen w-screen fixed top-0 left-[100vw] z-50 bg-black"
+  id="menu-drawer"
+>
+  <button
+    class="absolute right-8 top-8 h-6 w-6 text-yellow-500"
+    on:click={closeMenu}><Cross /></button
+  >
+  <div class="flex flex-col items-center mt-6 gap-4">
+    <div
+      class="bg-gradient-to-b from-yellow-100 to-yellow-500 bg-clip-text text-transparent text-5xl font-angel_raphsody"
+    >
+      Utsav '24
+    </div>
+    <div
+      class="flex flex-col font-voyage_bold text-3xl gap-4 items-center text-yellow-400 underline"
+    >
+      <button
+        class="hover:scale-125"
+        on:click={() => {
+          scrollInto("/");
+        }}>1. Home</button
+      >
+      <button
+        on:click={() => {
+          scrollInto("events");
+        }}>2. Events</button
+      >
+      <button
+        on:click={() => {
+          scrollInto("theme");
+        }}>3. Theme</button
+      >
+      <button
+        on:click={() => {
+          scrollInto("about");
+        }}>4. About</button
+      >
+      <button
+        on:click={() => {
+          scrollInto("contact");
+        }}>5. Contact Us</button
+      >
+    </div>
+  </div>
+</div>
+
 <div id="main-wrapper">
-  <div id="navbar-wrapper" class="sticky top-0 backdrop-blur">
+  <div id="navbar-wrapper" class=" backdrop-blur z-40">
     <nav
       class="flex justify-around items-center bg-black bg-opacity-70 h-20 md:h-32"
       id="navbar"
@@ -25,7 +95,17 @@
           <a href="#about" class="link">ABOUT</a>
           <a href="#contact" class="link">CONTACT US</a>
         </div>
-        <div class="visible md:hidden text-2xl font-voyage_bold">Menu</div>
+        <button
+          class="visible md:hidden text-2xl font-voyage_bold text-yellow-400"
+          on:click={() => {
+            gsap.to("#menu-drawer", {
+              left: 0,
+              ease: Expo.easeInOut,
+            });
+          }}
+        >
+          <Menu />
+        </button>
       </div>
     </nav>
     <svg
@@ -169,7 +249,7 @@
     </svg>
   </div>
 
-  <div class="flex flex-col items-center mt-1">
+  <div class="flex flex-col items-center mt-4">
     <h1 class="intro-text hover:scale-125" id="intro-text-utsav">Utsav 24</h1>
     <img
       src="/logo-without-utsav.png"
@@ -236,7 +316,7 @@
       </h1>
       <a
         href="/"
-        class="font-voyage_bold text-3xl md:text-5xl bg-gradient-to-b mt-4 from-amber-400 to-amber-950 p-3 rounded-xl hover:cursor-pointer hover:scale-125"
+        class="font-voyage_bold text-2xl md:text-5xl bg-gradient-to-b mt-4 from-amber-400 to-amber-950 p-3 rounded-xl hover:cursor-pointer hover:scale-125"
         >EXPLORE EVENTS!!</a
       >
     </div>
@@ -319,9 +399,11 @@
           <LinkedIn />
         </div>
         <div
-          class="flex-col items-center text-center font-voyage_bold text-4xl text-black"
+          class="flex-col items-center text-center font-voyage_bold text-xl md:text-4xl text-black"
         >
-          <h1 class="text-4xl hiddenn">B. M. S. College of Engineering</h1>
+          <h1 class="text-xl md:text-4xl hiddenn">
+            B. M. S. College of Engineering
+          </h1>
           <h4 class="hiddenn">
             #1908, Bull Temple Road, Basavanagudi, Bangalore - 560029
           </h4>
