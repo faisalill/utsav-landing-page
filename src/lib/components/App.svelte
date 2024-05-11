@@ -25,29 +25,29 @@
   <Main />
 </div>
 
-<div
-  class="w-screen h-screen absolute top-0 left-0 z-40 flex justify-center items-center text-6xl text-white text-opacity-70 font-voyage_bold"
-  id="warp-btn-wrapper"
->
-  <button
-    class="transition-all ease-in-out duration-500"
-    on:click={() => {
-      gsap.to("#warp-btn-wrapper", {
-        easing: Expo.easeInOut,
-        opacity: 0,
-        onComplete: () => {
-          document.querySelector("#warp-btn-wrapper").remove();
-        },
-      });
-      animationStore.update((value) => {
-        return {
-          ...value,
-          startIntroAnimation: true,
-        };
-      });
-    }}>WARP</button
-  >
-</div>
+<!-- <div -->
+<!--   class="w-screen h-screen absolute top-0 left-0 z-40 flex justify-center items-center text-6xl text-white text-opacity-70 font-voyage_bold" -->
+<!--   id="warp-btn-wrapper" -->
+<!-- > -->
+<!--   <button -->
+<!--     class="transition-all ease-in-out duration-500" -->
+<!--     on:click={() => { -->
+<!--       gsap.to("#warp-btn-wrapper", { -->
+<!--         easing: Expo.easeInOut, -->
+<!--         opacity: 0, -->
+<!--         onComplete: () => { -->
+<!--           document.querySelector("#warp-btn-wrapper").remove(); -->
+<!--         }, -->
+<!--       }); -->
+<!--       animationStore.update((value) => { -->
+<!--         return { -->
+<!--           ...value, -->
+<!--           startIntroAnimation: true, -->
+<!--         }; -->
+<!--       }); -->
+<!--     }}>WARP</button -->
+<!--   > -->
+<!-- </div> -->
 
 <style>
   #logo-container {

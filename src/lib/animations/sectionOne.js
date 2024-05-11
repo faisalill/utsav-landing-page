@@ -94,168 +94,168 @@ export function sectionOneAnimation(cameraRef, bloomPass, document) {
   textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
 
 
-  animationStore.subscribe((value) => {
+  // animationStore.subscribe((value) => {
+  //
+  //   if (value.startIntroAnimation && !value.isSectionOneAnimated) {
+  let tl = gsap.timeline()
+  bloomPass.strength = 0; tl.fromTo(cameraRef.position, {
+    x: cameraStart.x, y: cameraStart.y,
+    z: cameraStart.z
+  }, {
+    x: cameraEnd.x,
+    y: cameraEnd.y,
+    z: cameraEnd.z,
+    duration: starsDuration,
+    ease: 'none',
+  })
 
-    if (value.startIntroAnimation && !value.isSectionOneAnimated) {
-      let tl = gsap.timeline()
-      bloomPass.strength = 0; tl.fromTo(cameraRef.position, {
-        x: cameraStart.x, y: cameraStart.y,
-        z: cameraStart.z
-      }, {
-        x: cameraEnd.x,
-        y: cameraEnd.y,
-        z: cameraEnd.z,
-        duration: starsDuration,
-        ease: 'none',
-      })
+  tl.fromTo(bloomPass, {
+    strength: 0.0
+  }, {
+    strength: 6.0,
+    duration: starsDuration,
+    ease: 'expo.in',
+  }, `-=${starsDuration}`)
 
-      tl.fromTo(bloomPass, {
-        strength: 0.0
-      }, {
-        strength: 6.0,
-        duration: starsDuration,
-        ease: 'expo.in',
-      }, `-=${starsDuration}`)
+  tl.set("#fog", {
+    scale: 1,
+    onComplete: () => {
+      document.querySelector("#canvas-wrapper").remove()
+      console.log("THree.js Canvas Removed")
+    }
+  })
 
-      tl.set("#fog", {
-        scale: 1,
-        onComplete: () => {
-          document.querySelector("#canvas-wrapper").remove()
-          console.log("THree.js Canvas Removed")
+  const fogClearanceTime = 2.5;
+
+  tl.to("#fog", fogClearanceTime, {
+    opacity: 0
+  })
+
+  tl.to("#logo-container", {
+    opacity: 1,
+    onComplete: () => {
+      animationStore.update((value) => {
+        return {
+          ...value,
+          isSectionOneAnimated: true
         }
       })
+    }
+  }, `-=${fogClearanceTime - 0.5}`)
 
-      const fogClearanceTime = 2.5;
+  tl.fromTo("#navbar-wrapper", {
+    opacity: 0,
+    y: 100
 
-      tl.to("#fog", fogClearanceTime, {
-        opacity: 0
-      })
+  }, {
+    opacity: 1,
+    y: 0,
+    ease: Expo.easeInOut
+  })
 
-      tl.to("#logo-container", {
-        opacity: 1,
-        onComplete: () => {
-          animationStore.update((value) => {
-            return {
-              ...value,
-              isSectionOneAnimated: true
-            }
-          })
-        }
-      }, `-=${fogClearanceTime - 0.5}`)
 
-      tl.fromTo("#navbar-wrapper", {
+  tl.fromTo("#nav-logo-text", {
+    opacity: 0,
+    y: 100
+  }, {
+    opacity: 1,
+    y: 0,
+    ease: Expo.easeInOut
+  })
+
+  tl.fromTo("#nav-link-wrapper .link", {
+    opacity: 0,
+    y: 100
+  }, {
+    opacity: 1,
+    y: 0,
+    ease: Expo.easeInOut,
+    stagger: 0.1
+  })
+
+  tl.fromTo("#intro-text-utsav", {
+    opacity: 0,
+    y: 100
+  }, {
+    opacity: 1,
+    y: 0,
+    ease: Expo.easeInOut
+  })
+
+  tl.fromTo("#utsav-logo", {
+    opacity: 0,
+    y: 100
+  }, {
+    opacity: 1,
+    y: 0,
+    ease: Expo.easeInOut,
+    onComplete: () => {
+
+      const introTextTl = gsap.timeline({
+        repeat: -1,
+      });
+
+      introTextTl.fromTo("#intro-theme-text .letter", {
         opacity: 0,
-        y: 100
-
+        translateY: 100,
       }, {
         opacity: 1,
         y: 0,
-        ease: Expo.easeInOut
+        stagger: 0.2
       })
 
-
-      tl.fromTo("#nav-logo-text", {
+      introTextTl.to("#intro-theme-text .letter", {
         opacity: 0,
-        y: 100
-      }, {
-        opacity: 1,
-        y: 0,
-        ease: Expo.easeInOut
-      })
-
-      tl.fromTo("#nav-link-wrapper .link", {
-        opacity: 0,
-        y: 100
-      }, {
-        opacity: 1,
-        y: 0,
-        ease: Expo.easeInOut,
         stagger: 0.1
       })
 
-      tl.fromTo("#intro-text-utsav", {
+      introTextTl.fromTo("#intro-date-text .letter", {
         opacity: 0,
-        y: 100
+        translateY: 100,
       }, {
         opacity: 1,
-        y: 0,
-        ease: Expo.easeInOut
-      })
+        translateY: 0,
+        stagger: 0.2
+      }, '-=2')
 
-      tl.fromTo("#utsav-logo", {
+      introTextTl.to("#intro-date-text .letter", {
         opacity: 0,
-        y: 100
-      }, {
-        opacity: 1,
-        y: 0,
-        ease: Expo.easeInOut,
-        onComplete: () => {
-
-          const introTextTl = gsap.timeline({
-            repeat: -1,
-          });
-
-          introTextTl.fromTo("#intro-theme-text .letter", {
-            opacity: 0,
-            translateY: 100,
-          }, {
-            opacity: 1,
-            y: 0,
-            stagger: 0.2
-          })
-
-          introTextTl.to("#intro-theme-text .letter", {
-            opacity: 0,
-            stagger: 0.1
-          })
-
-          introTextTl.fromTo("#intro-date-text .letter", {
-            opacity: 0,
-            translateY: 100,
-          }, {
-            opacity: 1,
-            translateY: 0,
-            stagger: 0.2
-          }, '-=2')
-
-          introTextTl.to("#intro-date-text .letter", {
-            opacity: 0,
-            stagger: 0.2
-          })
-        }
+        stagger: 0.2
       })
-
-      tl.to(".intro-text", {
-        opacity: 1
-      })
-
-      tl.fromTo(".countdown-param", 2, {
-        opacity: 0,
-      }, {
-        opacity: 1,
-        stagger: 0.1,
-        ease: Expo.easeInOut
-      })
-
-      tl.fromTo(".br", {
-        opacity: 0,
-        y: 100
-      }, {
-        opacity: 1,
-        y: 0,
-        ease: Expo.easeInOut
-      })
-
-      tl.fromTo("#events", {
-        opacity: 0,
-        y: 100
-      }, {
-        opacity: 1,
-        y: 0,
-        ease: Expo.easeInOut
-      })
-
     }
   })
+
+  tl.to(".intro-text", {
+    opacity: 1
+  })
+
+  tl.fromTo(".countdown-param", 2, {
+    opacity: 0,
+  }, {
+    opacity: 1,
+    stagger: 0.1,
+    ease: Expo.easeInOut
+  })
+
+  tl.fromTo(".br", {
+    opacity: 0,
+    y: 100
+  }, {
+    opacity: 1,
+    y: 0,
+    ease: Expo.easeInOut
+  })
+
+  tl.fromTo("#events", {
+    opacity: 0,
+    y: 100
+  }, {
+    opacity: 1,
+    y: 0,
+    ease: Expo.easeInOut
+  })
+
+  //   }
+  // })
 
 }
