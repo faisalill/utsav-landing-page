@@ -78,6 +78,22 @@ body {
     transform: translateY(0%);
   }
 
+  #explore-btn {
+    @apply transition-all ease-in-out duration-300;
+  }
+
+  .patron-wrapper {
+    @apply text-center;
+  }
+
+  .patron-name {
+    @apply text-2xl md:text-5xl font-voyage_bold text-black;
+  }
+
+  .patron-info {
+    @apply text-xl md:text-3xl font-voyage_regular mt-2 text-black;
+  }
+
 }
 
 @media only screen and (max-width: 600px) {

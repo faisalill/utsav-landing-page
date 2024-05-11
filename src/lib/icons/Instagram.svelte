@@ -1,4 +1,8 @@
-<a class="icon-anchor" href="link">
+<a
+  class="icon-anchor"
+  href="https://www.instagram.com/bmsce_utsav/"
+  target="_blank"
+>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="28"

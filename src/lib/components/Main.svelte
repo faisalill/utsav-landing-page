@@ -315,9 +315,9 @@
         Events And Workshops
       </h1>
       <a
-        href="/"
+        href="https://registrations.bmsutsav.in/"
         class="font-voyage_bold text-2xl md:text-5xl bg-gradient-to-b mt-4 from-amber-400 to-amber-950 p-3 rounded-xl hover:cursor-pointer hover:scale-125"
-        >EXPLORE EVENTS!!</a
+        id="explore-btn">EXPLORE EVENTS!!</a
       >
     </div>
 
@@ -391,7 +391,7 @@
       >
         Get In Touch
       </h1>
-      <div class="flex flex-col items-center gap-4 hiddenn">
+      <div class="flex flex-col items-center gap-4">
         <div class="flex gap-8 mt-4 text-black hiddenn">
           <Facebook />
           <Instagram />
@@ -413,7 +413,118 @@
           <h3 class="hiddenn">© UTSAV 2024</h3>
         </div>
 
-        <div></div>
+        <div class="flex flex-col items-center">
+          <h1
+            class="mt-16 text-4xl md:text-8xl text-gradient hiddenn font-angel_raphsody"
+          >
+            Patrons
+          </h1>
+          <div class="flex flex-wrap gap-8 justify-center mt-4 hiddenn">
+            <div class="patron-wrapper">
+              <h2 class="patron-name">Dr. B.S. Ragini Narayan</h2>
+              <h4 class="patron-info">Donor Trustee & Chairperson, BMSET</h4>
+            </div>
+            <div class="patron-wrapper">
+              <h2 class="patron-name">Dr. P. Dayananda Pai</h2>
+              <h4 class="patron-info">
+                Chairperson, BMSCE & Life Trustee, BMSET
+              </h4>
+            </div>
+            <div class="patron-wrapper">
+              <h2 class="patron-name">Shri Aviram Sharma</h2>
+              <h4 class="patron-info">Trustee, BMSET</h4>
+            </div>
+            <div class="patron-wrapper">
+              <h2 class="patron-name">Shri Ravi Venkatesam</h2>
+              <h4 class="patron-info">Trustee, BMSET</h4>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col items-center">
+          <h1
+            class="mt-16 text-4xl md:text-8xl text-gradient hiddenn font-angel_raphsody"
+          >
+            Advisory Committee
+          </h1>
+          <div class="flex flex-wrap gap-8 justify-center mt-4 hiddenn">
+            <div class="patron-wrapper">
+              <h2 class="patron-name">Dr. S. Muralidhara</h2>
+              <h4 class="patron-info">Principal, BMSCE</h4>
+            </div>
+            <div class="patron-wrapper">
+              <h2 class="patron-name">Dr. Bheemsha Aray</h2>
+              <h4 class="patron-info">Vice Principal</h4>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col items-center">
+          <h1
+            class="mt-16 text-4xl md:text-8xl text-gradient hiddenn font-angel_raphsody"
+          >
+            Faculty Core Committee
+          </h1>
+          <div class="flex flex-wrap gap-8 justify-center mt-4 hiddenn">
+            <div class="patron-wrapper">
+              <h2 class="patron-name">Dr. Rathanraj KJ</h2>
+              <h4 class="patron-info">Working Chairman</h4>
+            </div>
+            <div class="patron-wrapper">
+              <h2 class="patron-name">Prof. Namratha M</h2>
+              <h4 class="patron-info">Organizing Secretary</h4>
+            </div>
+            <div class="patron-wrapper">
+              <h2 class="patron-name">Dr. Umavathi M</h2>
+              <h4 class="patron-info">Joint Secretary</h4>
+            </div>
+            <div class="patron-wrapper">
+              <h2 class="patron-name">Dr. Sujatha N</h2>
+              <h4 class="patron-info">Treasurer</h4>
+            </div>
+            <div class="patron-wrapper">
+              <h2 class="patron-name">Dr. Rajeshwari B S</h2>
+            </div>
+            <div class="patron-wrapper">
+              <h2 class="patron-name">Dr. Niranjan K R</h2>
+            </div>
+            <div class="patron-wrapper">
+              <h2 class="patron-name">Prof. Saritha A N</h2>
+            </div>
+            <div class="patron-wrapper">
+              <h2 class="patron-name">Prof. Surabhi S</h2>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col items-center">
+          <h1
+            class="mt-16 text-4xl md:text-8xl text-gradient hiddenn font-angel_raphsody"
+          >
+            Student Core Committee
+          </h1>
+          <div class="flex flex-wrap gap-8 justify-center mt-4 hiddenn">
+            <div class="patron-wrapper">
+              <h2 class="patron-name">Chandan N B</h2>
+            </div>
+            <div class="patron-wrapper">
+              <h2 class="patron-name">Nikhithasri Dara</h2>
+            </div>
+            <div class="patron-wrapper">
+              <h2 class="patron-name">Tanmay Rajan</h2>
+            </div>
+            <div class="patron-wrapper">
+              <h2 class="patron-name">Vidhya M Hegde</h2>
+            </div>
+            <div class="patron-wrapper">
+              <h2 class="patron-name">Nihal B R</h2>
+            </div>
+            <div class="patron-wrapper">
+              <h2 class="patron-name">Niriksha C Bhat</h2>
+            </div>
+          </div>
+        </div>
+        <div class="h-20"></div>
       </div>
     </div>
   </div>
