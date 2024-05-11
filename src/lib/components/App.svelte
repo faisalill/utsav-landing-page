@@ -1,10 +1,23 @@
 <script>
   import { Canvas } from "@threlte/core";
+  import { useProgress } from "@threlte/extras";
   import Scene from "./Scene.svelte";
   import "../../app.css";
   import { animationStore } from "$lib/stores/animations.js";
   import Main from "./Main.svelte";
-  import gsap, { Expo } from "gsap";
+
+  const { progress } = useProgress();
+
+  $: {
+    if ($progress == 1) {
+      animationStore.update((value) => {
+        return {
+          ...value,
+          startIntroAnimation: true,
+        };
+      });
+    }
+  }
 </script>
 
 <div class="w-screen h-screen relative z-0" id="canvas-wrapper">
@@ -25,29 +38,14 @@
   <Main />
 </div>
 
-<!-- <div -->
-<!--   class="w-screen h-screen absolute top-0 left-0 z-40 flex justify-center items-center text-6xl text-white text-opacity-70 font-voyage_bold" -->
-<!--   id="warp-btn-wrapper" -->
-<!-- > -->
-<!--   <button -->
-<!--     class="transition-all ease-in-out duration-500" -->
-<!--     on:click={() => { -->
-<!--       gsap.to("#warp-btn-wrapper", { -->
-<!--         easing: Expo.easeInOut, -->
-<!--         opacity: 0, -->
-<!--         onComplete: () => { -->
-<!--           document.querySelector("#warp-btn-wrapper").remove(); -->
-<!--         }, -->
-<!--       }); -->
-<!--       animationStore.update((value) => { -->
-<!--         return { -->
-<!--           ...value, -->
-<!--           startIntroAnimation: true, -->
-<!--         }; -->
-<!--       }); -->
-<!--     }}>WARP</button -->
-<!--   > -->
-<!-- </div> -->
+<div
+  class="w-screen h-screen absolute top-0 left-0 z-40 flex justify-center items-center text-6xl text-white text-opacity-70 font-voyage_bold"
+  id="warp-btn-wrapper"
+>
+  <button class="transition-all ease-in-out duration-500">
+    {$progress * 100}%
+  </button>
+</div>
 
 <style>
   #logo-container {

@@ -1,6 +1,6 @@
 <script>
   import { T, useThrelte, useRender } from "@threlte/core";
-  import { ContactShadows, Float, Grid, OrbitControls } from "@threlte/extras";
+  import { useProgress, OrbitControls } from "@threlte/extras";
   import Stars from "./Stars.svelte";
   import { Vector3, Raycaster, Vector2, PMREMGenerator, Color } from "three";
   import { onMount } from "svelte";
@@ -9,7 +9,6 @@
   import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
   import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
   import { sectionOneAnimation } from "$lib/animations/sectionOne.js";
-  import anime from "animejs";
 
   let cameraPosition = new Vector3(14.8835, -0.43037, 0.01861);
   let sphereRef,
@@ -98,23 +97,5 @@
   shadow.bias={-0.0001}
 />
 <T.AmbientLight intensity={2} />
-
-<Grid
-  visible={false}
-  fadeDistance={60}
-  sectionThickness={0}
-  cellColor={0xfffffff}
-/>
-
-<T.Mesh position.z={-4} bind:ref={planeRef} visible={false}>
-  <T.PlaneGeometry args={[200, 40]} />
-
-  <T.MeshStandardMaterial color={"#dd9d31"} transparent opacity={0.35} />
-</T.Mesh>
-
-<T.Mesh bind:ref={sphereRef} visible={false}>
-  <T.SphereGeometry args={[0.5, 32, 32]} />
-  <T.MeshStandardMaterial color={"#ff0000"} />
-</T.Mesh>
 
 <Stars />
