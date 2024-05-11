@@ -308,7 +308,7 @@
       id="br"
     />
 
-    <div class="flex flex-col items-center gap-4 hiddenn" id="events">
+    <div class="flex flex-col items-center gap-4" id="events">
       <h1
         class="mt-4 md:mt-24 text-4xl md:text-8xl text-gradient font-angel_raphsody"
       >
@@ -321,7 +321,7 @@
       >
     </div>
 
-    <div class="flex flex-col items-center hiddenn" id="theme">
+    <div class="flex flex-col items-center" id="theme">
       <h1
         class="mt-4 md:mt-16 text-4xl md:text-8xl text-gradient font-angel_raphsody"
       >

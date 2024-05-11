@@ -119,23 +119,23 @@ export function sectionOneAnimation(cameraRef, bloomPass, document) {
         x: [cameraStart.x, cameraEnd.x],
         y: [cameraStart.y, cameraEnd.y],
         z: [cameraStart.z, cameraEnd.z],
-        duration: 3000,
+        duration: 4000,
         easing: 'linear'
       })
 
       animeTl.add({
         targets: bloomPass,
         strength: [0, 6],
-        duration: 3000,
+        duration: 4000,
         easing: 'linear',
         complete: () => {
           document.querySelector("#canvas-wrapper").remove()
           console.log("Three.js Canvas Removed")
         }
-      }, `-=${3000}`)
 
 
 
+      }, `-=${4000}`)
 
       let tl = gsap.timeline()
       // bloomPass.strength = 0;
@@ -371,7 +371,6 @@ export function sectionOneAnimation(cameraRef, bloomPass, document) {
         opacity: [0, 1],
         stagger: anime.stagger(100),
         easing: 'easeInOutExpo',
-        duration: 2
       })
 
       // tl.fromTo(".countdown-param", 2, {
