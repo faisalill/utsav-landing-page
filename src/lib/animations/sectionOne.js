@@ -106,43 +106,96 @@ export function sectionOneAnimation(cameraRef, bloomPass, document) {
         scale: 0
       })
 
-      let tl = gsap.timeline()
-      bloomPass.strength = 0; tl.fromTo(cameraRef.position, {
-        x: cameraStart.x, y: cameraStart.y,
-        z: cameraStart.z
-      }, {
-        x: cameraEnd.x,
-        y: cameraEnd.y,
-        z: cameraEnd.z,
-        duration: starsDuration,
-        ease: 'none',
-      })
-
-      tl.fromTo(bloomPass, {
-        strength: 0.0
-      }, {
-        strength: 6.0,
-        duration: starsDuration,
-        ease: 'expo.in',
-      }, `-=${starsDuration}`)
-
-      tl.set("#fog", {
-        scale: 1,
-        onComplete: () => {
-          document.querySelector("#canvas-wrapper").remove()
-          console.log("THree.js Canvas Removed")
+      let animeTl = anime.timeline(
+        {
+          easing: 'easeInExpo'
         }
+      )
+
+      bloomPass.strength = 0;
+
+      animeTl.add({
+        targets: cameraRef.position,
+        x: [cameraStart.x, cameraEnd.x],
+        y: [cameraStart.y, cameraEnd.y],
+        z: [cameraStart.z, cameraEnd.z],
+        duration: 3000,
+        easing: 'linear'
       })
+
+      animeTl.add({
+        targets: bloomPass,
+        strength: [0, 6],
+        duration: 3000,
+        easing: 'linear',
+        complete: () => {
+          document.querySelector("#canvas-wrapper").remove()
+          console.log("Three.js Canvas Removed")
+        }
+      }, `-=${3000}`)
+
+
+
+
+      let tl = gsap.timeline()
+      // bloomPass.strength = 0;
+      //
+      // tl.fromTo(cameraRef.position, {
+      //   x: cameraStart.x, y: cameraStart.y,
+      //   z: cameraStart.z
+      // }, {
+      //   x: cameraEnd.x,
+      //   y: cameraEnd.y,
+      //   z: cameraEnd.z,
+      //   duration: starsDuration,
+      //   ease: 'none',
+      // })
+
+      // tl.fromTo(bloomPass, {
+      //   strength: 0.0
+      // }, {
+      //   strength: 6.0,
+      //   duration: starsDuration,
+      //   ease: 'expo.in',
+      // }, `-=${starsDuration}`)
+
+      // tl.set("#fog", {
+      //   scale: 1,
+      //   onComplete: () => {
+      //     document.querySelector("#canvas-wrapper").remove()
+      //     console.log("THree.js Canvas Removed")
+      //   }
+      // })
+
 
       const fogClearanceTime = 2.5;
 
-      tl.to("#fog", fogClearanceTime, {
-        opacity: 0
+      // tl.to("#fog", fogClearanceTime, {
+      //   opacity: 0
+      // })
+
+      animeTl.add({
+        targets: '#main-wrapper',
+        opacity: [0, 1],
+        duration: 1000
       })
 
-      tl.to("#logo-container", {
+      // tl.to("#logo-container", {
+      //   opacity: 1,
+      //   onComplete: () => {
+      //     animationStore.update((value) => {
+      //       return {
+      //         ...value,
+      //         isSectionOneAnimated: true
+      //       }
+      //     })
+      //   }
+      // }, `-=${fogClearanceTime - 0.5}`)
+
+      animeTl.add({
+        targets: '#logo-container',
         opacity: 1,
-        onComplete: () => {
+        complete: () => {
           animationStore.update((value) => {
             return {
               ...value,
@@ -152,54 +205,79 @@ export function sectionOneAnimation(cameraRef, bloomPass, document) {
         }
       }, `-=${fogClearanceTime - 0.5}`)
 
-      tl.fromTo("#navbar-wrapper", {
-        opacity: 0,
-        y: 100
+      // tl.fromTo("#navbar-wrapper", {
+      //   opacity: 0,
+      //   y: 100
+      //
+      // }, {
+      //   opacity: 1,
+      //   y: 0,
+      //   ease: Expo.easeInOut
+      // })
 
-      }, {
-        opacity: 1,
-        y: 0,
-        ease: Expo.easeInOut
+      animeTl.add({
+        targets: '#navbar-wrapper',
+        opacity: [0, 1],
+        translateY: [100, 0],
+        easing: 'easeInQuad'
       })
 
+      // tl.fromTo("#nav-logo-text", {
+      //   opacity: 0,
+      //   y: 100
+      // }, {
+      //   opacity: 1,
+      //   y: 0,
+      //   ease: Expo.easeInOut
+      // })
 
-      tl.fromTo("#nav-logo-text", {
-        opacity: 0,
-        y: 100
-      }, {
-        opacity: 1,
-        y: 0,
-        ease: Expo.easeInOut
+      animeTl.add({
+        targets: '#nav-logo-text',
+        opacity: [0, 1],
+        translateY: [100, 0],
+        easing: 'easeInQuad'
       })
 
-      tl.fromTo("#nav-link-wrapper .link", {
-        opacity: 0,
-        y: 100
-      }, {
-        opacity: 1,
-        y: 0,
-        ease: Expo.easeInOut,
-        stagger: 0.1
+      // tl.fromTo("#nav-link-wrapper .link", {
+      //   opacity: 0,
+      //   y: 100
+      // }, {
+      //   opacity: 1,
+      //   y: 0,
+      //   ease: Expo.easeInOut,
+      //   stagger: 0.1
+      // })
+
+      animeTl.add({
+        targets: "#nav-link-wrapper .link",
+        opacity: [0, 1],
+        translateY: [50, 0],
+        easing: 'easeInQuad',
+        delay: anime.stagger(200)
       })
 
-      tl.fromTo("#intro-text-utsav", {
-        opacity: 0,
-        y: 100
-      }, {
-        opacity: 1,
-        y: 0,
-        ease: Expo.easeInOut
+      // tl.fromTo("#intro-text-utsav", {
+      //   opacity: 0,
+      //   y: 100
+      // }, {
+      //   opacity: 1,
+      //   y: 0,
+      //   ease: Expo.easeInOut
+      // })
+
+      animeTl.add({
+        targets: '#intro-text-utsav',
+        opacity: [0, 1],
+        translateY: [100, 0],
+        easing: 'easeInOutExpo'
       })
 
-      tl.fromTo("#utsav-logo", {
-        opacity: 0,
-        y: 100
-      }, {
-        opacity: 1,
-        y: 0,
-        ease: Expo.easeInOut,
-        onComplete: () => {
-
+      animeTl.add({
+        targets: '#utsav-logo',
+        opacity: [0, 1],
+        translateY: [100, 0],
+        easing: 'easeInOutExpo',
+        complete: () => {
           const introTextTl = gsap.timeline({
             repeat: -1,
           });
@@ -213,10 +291,12 @@ export function sectionOneAnimation(cameraRef, bloomPass, document) {
             stagger: 0.2
           })
 
+
           introTextTl.to("#intro-theme-text .letter", {
             opacity: 0,
             stagger: 0.1
           })
+
 
           introTextTl.fromTo("#intro-date-text .letter", {
             opacity: 0,
@@ -234,34 +314,102 @@ export function sectionOneAnimation(cameraRef, bloomPass, document) {
         }
       })
 
-      tl.to(".intro-text", {
+      // tl.fromTo("#utsav-logo", {
+      //   opacity: 0,
+      //   y: 100
+      // }, {
+      //   opacity: 1,
+      //   y: 0,
+      //   ease: Expo.easeInOut,
+      //   onComplete: () => {
+      //
+      //     const introTextTl = gsap.timeline({
+      //       repeat: -1,
+      //     });
+      //
+      //     introTextTl.fromTo("#intro-theme-text .letter", {
+      //       opacity: 0,
+      //       translateY: 100,
+      //     }, {
+      //       opacity: 1,
+      //       y: 0,
+      //       stagger: 0.2
+      //     })
+      //
+      //     introTextTl.to("#intro-theme-text .letter", {
+      //       opacity: 0,
+      //       stagger: 0.1
+      //     })
+      //
+      //     introTextTl.fromTo("#intro-date-text .letter", {
+      //       opacity: 0,
+      //       translateY: 100,
+      //     }, {
+      //       opacity: 1,
+      //       translateY: 0,
+      //       stagger: 0.2
+      //     }, '-=2')
+      //
+      //     introTextTl.to("#intro-date-text .letter", {
+      //       opacity: 0,
+      //       stagger: 0.2
+      //     })
+      //   }
+      // })
+
+      animeTl.add({
+        targets: '.intro-text',
         opacity: 1
       })
 
-      tl.fromTo(".countdown-param", 2, {
-        opacity: 0,
-      }, {
-        opacity: 1,
-        stagger: 0.1,
-        ease: Expo.easeInOut
+      // tl.to(".intro-text", {
+      //   opacity: 1
+      // })
+
+      animeTl.add({
+        targets: '.countdown-param',
+        opacity: [0, 1],
+        stagger: anime.stagger(100),
+        easing: 'easeInOutExpo',
+        duration: 2
       })
 
-      tl.fromTo(".br", {
-        opacity: 0,
-        y: 100
-      }, {
-        opacity: 1,
-        y: 0,
-        ease: Expo.easeInOut
+      // tl.fromTo(".countdown-param", 2, {
+      //   opacity: 0,
+      // }, {
+      //   opacity: 1,
+      //   stagger: 0.1,
+      //   ease: Expo.easeInOut
+      // })
+
+      animeTl.add({
+        targets: '.br',
+        opacity: [0, 1],
+        translateY: [100, 0],
       })
 
-      tl.fromTo("#events", {
-        opacity: 0,
-        y: 100
-      }, {
-        opacity: 1,
-        y: 0,
-        ease: Expo.easeInOut
+      // tl.fromTo(".br", {
+      //   opacity: 0,
+      //   y: 100
+      // }, {
+      //   opacity: 1,
+      //   y: 0,
+      //   ease: Expo.easeInOut
+      // })
+
+      // tl.fromTo("#events", {
+      //   opacity: 0,
+      //   y: 100
+      // }, {
+      //   opacity: 1,
+      //   y: 0,
+      //   ease: Expo.easeInOut
+      // })
+
+      animeTl.add({
+        targets: '#events',
+        opacity: [0, 1],
+        translateY: [100, 0]
       })
 
     }

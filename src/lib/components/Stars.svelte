@@ -2,11 +2,10 @@
   import { T, useFrame } from "@threlte/core";
   import { useTexture, InstancedMesh, Instance } from "@threlte/extras";
   import { DoubleSide, Color } from "three";
-  import { onMount } from "svelte";
 
   const map = useTexture("/star.png");
 
-  const starsCount = 120;
+  const starsCount = 100;
   let stars = [];
   const starColors = ["#f0c74f", "#6C9897", "#ff0000", "#ffffff", "#112d28"];
 
