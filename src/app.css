@@ -94,6 +94,20 @@ body {
     @apply text-xl md:text-3xl font-voyage_regular mt-2 text-black;
   }
 
+  #canvas-wrapper {
+    background: black;
+  }
+
+  #svg-utsav-text {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 0;
+
+    path {
+      stroke: gold;
+      stroke-width: 0.09;
+    }
+  }
+
 }
 
 @media only screen and (max-width: 600px) {
