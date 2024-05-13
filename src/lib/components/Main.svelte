@@ -82,11 +82,12 @@
       <p
         class="font-voyage_bold text-xl md:text-3xl text-center px-4 md:px-72 text-black p-3 rounded-xl hover:cursor-pointer"
       >
-        This year's theme explores the vastness of time, from the echoes of
-        history to the possibilities of the future. Prepare to be transported by
-        stunning performances, captivating art exhibits, and thought-provoking
-        workshops. Let your imagination soar as we celebrate the enduring power
-        of human creativity across the ages!
+
+Step into the intertwining threads of history and modernity at our youth festival, where the echoes of the past resound alongside the rhythms of the present. Journey through the civilizations of yore, immerse yourself in the vibrant tapestry of mythology, and witness the timeless tales that continue to shape our world today. Join us as we bridge the gap between past and present, weaving together the rich tapestry of human experience in a celebration of youth, culture, and heritage.      </p>
+      <p
+        class="font-voyage_bold text-xl md:text-3xl text-center px-4 md:px-72 text-black p-3 rounded-xl hover:cursor-pointer"
+      >
+        As a beacon of cultural festivity, Utsav -The Festival of Faith, is all set to be a platform where past and present coalesce, offering a unique space for students to showcase their talents across music, dance, literature, and more. In embracing the theme "Realms of Time," the 2024 edition of Utsav invites participants to traverse the continuum of human creativity, from the whispers of ancient civilizations to the contemporary beats of today's world.
       </p>
     </div>
 
@@ -96,31 +97,19 @@
       >
         About Us
       </h1>
-      <img src="/vv.jpeg" class="rounded-full hiddenn" />
+      <img src="/bmsce.webp" class="rounded-full h-auto w-52 hiddenn" />
       <p
         class="font-voyage_bold text-xl md:text-3xl text-center hiddenn px-4 md:px-72 text-black p-3 rounded-xl hover:cursor-pointer"
       >
-        UTSAV, the Annual Cultural Fest of B.M.S. College of Engineering has
-        been one of the most splendid cultural events in India and the pride of
-        BMSCE, since its inception in 1981. ENVISAGE, the Annual Cultural Fest
-        of B.M.S. College of Architecture is one of the most well-known fests in
-        the architectural domain. This year, with the amalgamation of Utsav and
-        Envisage, we witnessed a fest of massive magnitude that pulled in crowds
-        from across the nation.
-      </p>
+        Founded in 1946, B. M. S. College of Engineering (BMSCE) stands as an early trailblazer in engineering education. Envisioned by the late Sri B. M. Sreenivasaiah, the college was established in Basavanagudi, with the ambition of becoming a cornerstone of higher education in Bengaluru. This dream was passionately pursued by his son, the late Sri B. S. Narayan, who was committed to providing quality education to students globally.
 
-      <img src="/bmsce.webp" class="rounded-full h-auto w-52 hiddenn" />
+      </p>
       <p
         class="font-voyage_bold text-xl md:text-3xl md:text-3xl text-center px-4 md:px-72 text-black hiddenn p-3 rounded-xl hover:cursor-pointer"
       >
-        B. M. S. College of Engineering (BMSCE) stands as an autonomous
-        institution in Bengaluru, its roots tracing back to 1946, thanks to the
-        visionary and philanthropic spirit of the late Sri. B. M. Sreenivasalah.
-        BMSCE holds the distinction of being India's pioneering private sector
-        endeavour in engineering education, and it has remained unwavering in
-        its commitment to realise its mission of advancing human well-being
-        through the delivery of high-quality technical education and training
-        since its founding.
+        
+Today, BMSCE has grown to offer 18 undergraduate and 13 postgraduate programs across various engineering and management fields. The college boasts a team of highly qualified faculty and staff, dedicated to delivering outstanding education while keeping pace with the future.
+
       </p>
     </div>
 

@@ -6,6 +6,11 @@
 
   onMount(() => {
     animationHandler(document);
+
+    document.querySelector("#intro-text-bmsce").style.transform = "scale(1)";
+    document.querySelector("#intro-text-bmsce-info").style.transform =
+      "scale(1)";
+    document.querySelector("#svg-utsav-text").style.transform = "scale(1)";
   });
 </script>
 
@@ -28,7 +33,7 @@
     class="flex flex-col gap-4 h-screen justify-center items-center pointer-events-none"
   >
     <div
-      class="text-yellow-500 text-3xl md:text-9xl font-voyage_bold z-40"
+      class="text-yellow-500 text-3xl md:text-9xl font-voyage_bold z-40 scale-0"
       id="intro-text-bmsce"
     >
       <span class="letter">B</span>
@@ -39,7 +44,7 @@
     </div>
 
     <div
-      class="text-white font-voyage_bold text-2xl md:text-6xl text-yellow-500 z-40 pointer-events-none"
+      class="text-white font-voyage_bold text-2xl md:text-6xl text-yellow-500 z-40 pointer-events-none scale-0"
       id="intro-text-bmsce-info"
     >
       TECHNO &nbsp; CULTURAL &nbsp; FEST
@@ -47,7 +52,7 @@
     <svg
       viewBox="0 0 100 30"
       id="svg-utsav-text"
-      class="text-black px-60 w-auto h-24 relative z-40 md:h-96"
+      class="text-black px-60 w-auto h-24 relative z-40 md:h-96 scale-0"
     >
       <path
         class="svg-path"
