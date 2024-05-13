@@ -8,13 +8,11 @@
 
 <div id="main-wrapper relative" class="relative mt-24 md:mt-32">
   <div class="flex flex-col items-center mt-8">
-    <h1 class="intro-text hover:scale-125 relative" id="intro-text-utsav">
-      Utsav 24
-    </h1>
+    <h1 class="intro-text relative" id="intro-text-utsav">Utsav 24</h1>
     <div class="w-[250px] md:w-[500px] h-auto relative" id="utsav-logo">
       <UtsavLogo />
     </div>
-    <div class="mt-8 md:mt-24">
+    <div class="mt-12 md:mt-28">
       <h1
         class="intro-text absolute text-nowrap -translate-x-1/2 -translate-y-1/2"
         id="intro-theme-text"
@@ -68,26 +66,36 @@
       </h1>
       <a
         href="https://registrations.bmsutsav.in/"
-        class="font-voyage_bold text-2xl md:text-5xl bg-gradient-to-b mt-4 from-amber-400 to-amber-950 p-3 rounded-xl hover:cursor-pointer hover:scale-125 relative"
+        class="font-voyage_bold text-2xl md:text-5xl bg-gradient-to-b mt-4 from-amber-400 to-amber-950 p-3 rounded-xl hover:cursor-pointer relative"
         id="explore-btn">EXPLORE EVENTS!!</a
       >
     </div>
 
     <div class="flex flex-col items-center" id="theme">
       <h1
-        class="mt-4 md:mt-16 text-4xl md:text-8xl text-gradient font-angel_raphsody"
+        class="mt-4 md:mt-16 text-4xl md:text-8xl text-gradient font-angel_raphsody hiddenn"
       >
         Theme
       </h1>
       <p
-        class="font-voyage_bold text-xl md:text-3xl text-center px-4 md:px-72 text-black p-3 rounded-xl hover:cursor-pointer"
+        class="font-voyage_bold text-xl md:text-3xl text-center px-4 md:px-72 text-black p-3 rounded-xl hover:cursor-pointer hiddenn"
       >
-
-Step into the intertwining threads of history and modernity at our youth festival, where the echoes of the past resound alongside the rhythms of the present. Journey through the civilizations of yore, immerse yourself in the vibrant tapestry of mythology, and witness the timeless tales that continue to shape our world today. Join us as we bridge the gap between past and present, weaving together the rich tapestry of human experience in a celebration of youth, culture, and heritage.      </p>
-      <p
-        class="font-voyage_bold text-xl md:text-3xl text-center px-4 md:px-72 text-black p-3 rounded-xl hover:cursor-pointer"
-      >
-        As a beacon of cultural festivity, Utsav -The Festival of Faith, is all set to be a platform where past and present coalesce, offering a unique space for students to showcase their talents across music, dance, literature, and more. In embracing the theme "Realms of Time," the 2024 edition of Utsav invites participants to traverse the continuum of human creativity, from the whispers of ancient civilizations to the contemporary beats of today's world.
+        Step into the intertwining threads of history and modernity at our youth
+        festival, where the echoes of the past resound alongside the rhythms of
+        the present. Journey through the civilizations of yore, immerse yourself
+        in the vibrant tapestry of mythology, and witness the timeless tales
+        that continue to shape our world today. Join us as we bridge the gap
+        between past and present, weaving together the rich tapestry of human
+        experience in a celebration of youth, culture, and heritage.
+        <br />
+        <br />
+        As a beacon of cultural festivity, Utsav -The Festival of Faith, is all set
+        to be a platform where past and present coalesce, offering a unique space
+        for students to showcase their talents across music, dance, literature, and
+        more. In embracing the theme "Realms of Time," the 2024 edition of Utsav
+        invites participants to traverse the continuum of human creativity, from
+        the whispers of ancient civilizations to the contemporary beats of today's
+        world.
       </p>
     </div>
 
@@ -101,15 +109,21 @@ Step into the intertwining threads of history and modernity at our youth festiva
       <p
         class="font-voyage_bold text-xl md:text-3xl text-center hiddenn px-4 md:px-72 text-black p-3 rounded-xl hover:cursor-pointer"
       >
-        Founded in 1946, B. M. S. College of Engineering (BMSCE) stands as an early trailblazer in engineering education. Envisioned by the late Sri B. M. Sreenivasaiah, the college was established in Basavanagudi, with the ambition of becoming a cornerstone of higher education in Bengaluru. This dream was passionately pursued by his son, the late Sri B. S. Narayan, who was committed to providing quality education to students globally.
-
+        Founded in 1946, B. M. S. College of Engineering (BMSCE) stands as an
+        early trailblazer in engineering education. Envisioned by the late Sri
+        B. M. Sreenivasaiah, the college was established in Basavanagudi, with
+        the ambition of becoming a cornerstone of higher education in Bengaluru.
+        This dream was passionately pursued by his son, the late Sri B. S.
+        Narayan, who was committed to providing quality education to students
+        globally.
       </p>
       <p
         class="font-voyage_bold text-xl md:text-3xl md:text-3xl text-center px-4 md:px-72 text-black hiddenn p-3 rounded-xl hover:cursor-pointer"
       >
-        
-Today, BMSCE has grown to offer 18 undergraduate and 13 postgraduate programs across various engineering and management fields. The college boasts a team of highly qualified faculty and staff, dedicated to delivering outstanding education while keeping pace with the future.
-
+        Today, BMSCE has grown to offer 18 undergraduate and 13 postgraduate
+        programs across various engineering and management fields. The college
+        boasts a team of highly qualified faculty and staff, dedicated to
+        delivering outstanding education while keeping pace with the future.
       </p>
     </div>
 
