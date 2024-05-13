@@ -5,6 +5,26 @@
 body {
   perspective: 1000px;
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background: black;
+}
+
+::-webkit-scrollbar-track {
+  background: black;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 215, 0, 0.3);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 215, 0, 0.9);
 }
 
 @layer base {
@@ -40,7 +60,6 @@ body {
 }
 
 @layer components {
-
   .link {
     @apply text-3xl hover:text-yellow-500 transition-all ease-in-out duration-200 font-voyage_bold;
   }
@@ -50,11 +69,11 @@ body {
   }
 
   .intro-text {
-    @apply font-angel_raphsody text-5xl md:text-9xl bg-gradient-to-b from-amber-400 to-amber-950 bg-clip-text text-transparent;
+    @apply font-angel_raphsody text-5xl md:text-9xl from-amber-500 to-amber-900 bg-clip-text text-transparent;
   }
 
   .text-gradient {
-    @apply bg-gradient-to-b from-amber-400 to-amber-900 bg-clip-text text-transparent;
+    @apply bg-gradient-to-b from-amber-500 to-amber-900 bg-clip-text text-transparent;
   }
 
   .br {
@@ -94,20 +113,60 @@ body {
     @apply text-xl md:text-3xl font-voyage_regular mt-2 text-black;
   }
 
-  #canvas-wrapper {
-    background: black;
-  }
-
   #svg-utsav-text {
     stroke-dasharray: 1000;
     stroke-dashoffset: 0;
 
     path {
       stroke: gold;
-      stroke-width: 0.09;
+      stroke-width: 0.2;
     }
   }
 
+  #svg-utsav-logo {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 0;
+
+    path {
+      stroke: #926011;
+      stroke-width: 0.2;
+    }
+  }
+
+  .letter {
+    position: relative;
+  }
+
+  .split-letter {
+    @apply font-angel_raphsody text-5xl md:text-9xl bg-gradient-to-b from-amber-500 to-amber-950 bg-clip-text text-transparent opacity-0 relative;
+  }
+
+  .intro-bar {
+    @apply bg-black text-black w-1/6 relative;
+  }
+
+  .countdown-param {
+    h2 {
+      @apply font-angel_raphsody text-4xl md:text-7xl bg-gradient-to-b from-amber-500 to-amber-950 bg-clip-text text-transparent relative;
+    }
+
+    h4 {
+      @apply text-2xl md:text-4xl font-voyage_bold bg-gradient-to-b from-amber-500 to-amber-950 bg-clip-text text-transparent relative;
+    }
+  }
+
+  #navbar-wrapper {
+    width: 100vw;
+    position: fixed;
+  }
+
+  .link-resp {
+    @apply text-2xl font-voyage_bold;
+  }
+
+  .respo-hr {
+    @apply h-[0.5px] w-full bg-white opacity-10 rounded-xl;
+  }
 }
 
 @media only screen and (max-width: 600px) {

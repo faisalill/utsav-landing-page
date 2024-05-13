@@ -1,5 +1,5 @@
 import { animationStore } from '$lib/stores/animations.js'
-import gsap, { Expo } from 'gsap'
+import gsap from 'gsap'
 import anime from 'animejs'
 
 const cameraStart = {
@@ -56,24 +56,50 @@ function getTimeToTomorrowMidnight() {
     seconds,
   };
 }
+
+function splitInLetters(element, document) {
+  const el = document.querySelector(element);
+  el.innerHTML = el.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+}
+
+function splitInLettersV2(element, document) {
+  const el = document.querySelector(element);
+  el.innerHTML = el.textContent.replace(/\S/g, "<span class='split-letter'>$&</span>");
+}
+
 export function animationHandler(document) {
 
-  let textWrapper = document.querySelector("#intro-text-bmsce");
-  textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+  splitInLetters('#intro-text-bmsce', document)
+  splitInLetters('#intro-text-bmsce-info', document)
+  splitInLettersV2('#intro-theme-text', document)
+  splitInLettersV2('#intro-date-text', document)
 
-  const introTimeline = anime.timeline()
-
-  gsap.fromTo('#intro-text-bmsce .letter', {
-    translateY: 100,
-    opacity: 0,
-    scale: 0.4
-  }, {
-    translateY: 0,
-    opacity: 1,
-    stagger: 0.1,
-    scale: 3,
-    duration: 2
+  const introTimeline = anime.timeline({
+    easing: 'easeInOutSine'
   })
+
+  introTimeline.add({
+    targets: '#intro-text-bmsce .letter',
+    bottom: [-100, 0],
+    opacity: [0, 1],
+    scale: [0.4, 3],
+    easing: 'easeInOutExpo',
+    delay: (el, i) => {
+      return i * 200
+    }
+  })
+
+  introTimeline.add({
+    targets: '#intro-text-bmsce-info .letter',
+    bottom: [-100, 0],
+    opacity: [0, 1],
+    scale: [0.4, 3],
+    easing: 'easeInOutExpo',
+    delay: (el, i) => {
+      return i * 50
+    }
+  })
+
 
   introTimeline.add({
     targets: '#svg-utsav-text path',
@@ -81,12 +107,168 @@ export function animationHandler(document) {
     duration: 1500,
     easing: 'easeInOutSine',
     delay: (el, i) => { return i * 500 },
-    complete: () => {
-      anime({
-        targets: '#svg-utsav-text',
-        fill: 'yellow',
-        duration: 4000
+  })
+
+  introTimeline.add({
+    targets: '#intro-text-bmsce .letter',
+    bottom: ['0', '100%'],
+    opacity: [1, 0],
+    delay: anime.stagger(100),
+    duration: 1000,
+    begin: () => {
+      const exitTimeline = anime.timeline({
+        duration: 200,
+        easing: 'linear',
+
       })
+      exitTimeline.add({
+        targets: '#intro-text-bmsce-info .letter',
+        opacity: [1, 0],
+        bottom: ['0', '100%'],
+        delay: anime.stagger(50),
+      })
+      exitTimeline.add({
+        targets: '#svg-utsav-text path',
+        bottom: ['0', '100%'],
+        opacity: [1, 0],
+        delay: anime.stagger(100)
+      }, '-=500')
+      exitTimeline.add({
+        targets: '#intro-bars .intro-bar',
+        bottom: ['0', '100%'],
+        easing: 'easeInOutSine',
+        begin: () => {
+
+          anime({
+            targets: '#theme p',
+            opacity: [0, 1],
+            bottom: [-100, 0],
+            easing: 'easeInOutExpo',
+          })
+
+          anime({
+            targets: '#theme h1',
+            opacity: [0, 1],
+            bottom: [-100, 0],
+            easing: 'easeInOutExpo',
+            delay: 500
+          })
+
+          anime({
+            targets: '#events a',
+            opacity: [0, 1],
+            bottom: [-100, 0],
+            easing: 'easeInOutExpo',
+          })
+
+          anime({
+            targets: '#events h1',
+            opacity: [0, 1],
+            bottom: [-100, 0],
+            easing: 'easeInOutExpo',
+            delay: 500
+          })
+
+          anime({
+            targets: '#br',
+            opacity: [0, 1],
+            translateY: [100, 0],
+            easing: 'easeInOutExpo',
+            delay: 1000
+          })
+
+          anime({
+            targets: ".countdown-param",
+            opacity: [0, 1],
+            translateY: [100, 0],
+            delay: anime.stagger(200),
+            duration: 1000,
+            delay: 1500,
+            complete: () => {
+
+              const introTextTl = gsap.timeline({
+                repeat: -1,
+              });
+
+              introTextTl.fromTo("#intro-theme-text .split-letter", {
+                opacity: 0,
+                bottom: -20,
+              }, {
+                opacity: 1,
+                bottom: 0,
+                stagger: 0.2
+              })
+
+
+              introTextTl.to("#intro-theme-text .split-letter", {
+                opacity: 0,
+                stagger: 0.1
+              })
+
+
+              introTextTl.fromTo("#intro-date-text .split-letter", {
+                opacity: 0,
+                bottom: -20
+              }, {
+                opacity: 1,
+                bottom: 0,
+                stagger: 0.2
+              }, '-=2')
+
+              introTextTl.to("#intro-date-text .split-letter", {
+                opacity: 0,
+                stagger: 0.2
+              })
+
+            }
+          })
+
+          anime({
+            targets: '#utsav-logo',
+            translateY: [-100, 0],
+            opacity: [0, 1],
+            delay: 2000,
+            complete: () => {
+              anime({
+                targets: '#svg-utsav-logo path',
+                strokeDashoffset: [anime.setDashoffset, 0],
+                duration: 5000,
+                easing: 'easeInOutSine',
+                delay: (el, i) => {
+                  return (i * 500 - 2000)
+                },
+              })
+
+              anime({
+                targets: '#svg-utsav-logo path',
+                fill: '#935506',
+                duration: 2000,
+                easing: 'easeInOutSine',
+                delay: (el, i) => {
+                  return i * 500 + 2000
+                }
+              })
+            }
+          })
+
+
+          splitInLettersV2('#intro-text-utsav', document)
+
+          anime({
+            targets: '#intro-text-utsav .split-letter',
+            bottom: [100, 0],
+            opacity: [0, 1],
+            delay: 1800,
+            stagger: anime.stagger(100),
+            complete: () => {
+              document.body.style.overflowY = "scroll";
+            }
+          })
+
+        },
+        delay: anime.stagger(100),
+        duration: 1000
+      }, '-=800')
     }
   })
 
@@ -118,304 +300,142 @@ export function animationHandler(document) {
   const hiddenElements = document.querySelectorAll(".hiddenn");
   hiddenElements.forEach((el) => observer.observe(el));
 
-  textWrapper = document.querySelector("#intro-theme-text");
-  textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-
-  textWrapper = document.querySelector("#intro-date-text");
-  textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-
 
   animationStore.subscribe((value) => {
 
     if (value.startIntroAnimation && !value.isSectionOneAnimated) {
 
-      anime({
-        targets: "#warp-btn-wrapper",
-        opacity: 0,
-        scale: 0
-      })
 
-      let animeTl = anime.timeline(
-        {
-          easing: 'easeInExpo',
-          duration: 500
-        }
-      )
-
-      // let tl = gsap.timeline()
-      // bloomPass.strength = 0;
+      //   let animeTl = anime.timeline(
+      //     {
+      //       easing: 'easeInExpo',
+      //       duration: 500
+      //     }
+      //   )
       //
-      // tl.fromTo(cameraRef.position, {
-      //   x: cameraStart.x, y: cameraStart.y,
-      //   z: cameraStart.z
-      // }, {
-      //   x: cameraEnd.x,
-      //   y: cameraEnd.y,
-      //   z: cameraEnd.z,
-      //   duration: starsDuration,
-      //   ease: 'none',
-      // })
-
-      // tl.fromTo(bloomPass, {
-      //   strength: 0.0
-      // }, {
-      //   strength: 6.0,
-      //   duration: starsDuration,
-      //   ease: 'expo.in',
-      // }, `-=${starsDuration}`)
-
-      // tl.set("#fog", {
-      //   scale: 1,
-      //   onComplete: () => {
-      //     document.querySelector("#canvas-wrapper").remove()
-      //     console.log("THree.js Canvas Removed")
-      //   }
-      // })
-
-
-      const fogClearanceTime = 2.5;
-
-      // tl.to("#fog", fogClearanceTime, {
-      //   opacity: 0
-      // })
-
-      animeTl.add({
-        targets: '#main-wrapper',
-        opacity: [0, 1],
-        duration: 1000
-      })
-
-      // tl.to("#logo-container", {
-      //   opacity: 1,
-      //   onComplete: () => {
-      //     animationStore.update((value) => {
-      //       return {
-      //         ...value,
-      //         isSectionOneAnimated: true
-      //       }
-      //     })
-      //   }
-      // }, `-=${fogClearanceTime - 0.5}`)
-
-      animeTl.add({
-        targets: '#logo-container',
-        opacity: 1,
-        complete: () => {
-          animationStore.update((value) => {
-            return {
-              ...value,
-              isSectionOneAnimated: true
-            }
-          })
-        }
-      }, `-=${fogClearanceTime - 0.5}`)
-
-      // tl.fromTo("#navbar-wrapper", {
-      //   opacity: 0,
-      //   y: 100
+      //   const fogClearanceTime = 2.5;
       //
-      // }, {
-      //   opacity: 1,
-      //   y: 0,
-      //   ease: Expo.easeInOut
-      // })
-
-      animeTl.add({
-        targets: '#navbar-wrapper',
-        opacity: [0, 1],
-        translateY: [100, 0],
-        easing: 'easeInQuad'
-      })
-
-      // tl.fromTo("#nav-logo-text", {
-      //   opacity: 0,
-      //   y: 100
-      // }, {
-      //   opacity: 1,
-      //   y: 0,
-      //   ease: Expo.easeInOut
-      // })
-
-      animeTl.add({
-        targets: '#nav-logo-text',
-        opacity: [0, 1],
-        translateY: [100, 0],
-        easing: 'easeInQuad'
-      })
-
-      // tl.fromTo("#nav-link-wrapper .link", {
-      //   opacity: 0,
-      //   y: 100
-      // }, {
-      //   opacity: 1,
-      //   y: 0,
-      //   ease: Expo.easeInOut,
-      //   stagger: 0.1
-      // })
-
-      animeTl.add({
-        targets: "#nav-link-wrapper .link",
-        opacity: [0, 1],
-        translateY: [50, 0],
-        easing: 'easeInQuad',
-        delay: anime.stagger(200)
-      })
-
-      // tl.fromTo("#intro-text-utsav", {
-      //   opacity: 0,
-      //   y: 100
-      // }, {
-      //   opacity: 1,
-      //   y: 0,
-      //   ease: Expo.easeInOut
-      // })
-
-      animeTl.add({
-        targets: '#intro-text-utsav',
-        opacity: [0, 1],
-        translateY: [100, 0],
-        easing: 'easeInOutExpo'
-      })
-
-      animeTl.add({
-        targets: '#utsav-logo',
-        opacity: [0, 1],
-        translateY: [100, 0],
-        easing: 'easeInOutExpo',
-        complete: () => {
-          const introTextTl = gsap.timeline({
-            repeat: -1,
-          });
-
-          introTextTl.fromTo("#intro-theme-text .letter", {
-            opacity: 0,
-            translateY: 100,
-          }, {
-            opacity: 1,
-            y: 0,
-            stagger: 0.2
-          })
-
-
-          introTextTl.to("#intro-theme-text .letter", {
-            opacity: 0,
-            stagger: 0.1
-          })
-
-
-          introTextTl.fromTo("#intro-date-text .letter", {
-            opacity: 0,
-            translateY: 100,
-          }, {
-            opacity: 1,
-            translateY: 0,
-            stagger: 0.2
-          }, '-=2')
-
-          introTextTl.to("#intro-date-text .letter", {
-            opacity: 0,
-            stagger: 0.2
-          })
-        }
-      })
-
-      // tl.fromTo("#utsav-logo", {
-      //   opacity: 0,
-      //   y: 100
-      // }, {
-      //   opacity: 1,
-      //   y: 0,
-      //   ease: Expo.easeInOut,
-      //   onComplete: () => {
+      //   animeTl.add({
+      //     targets: '#main-wrapper',
+      //     opacity: [0, 1],
+      //     duration: 1000
+      //   })
       //
-      //     const introTextTl = gsap.timeline({
-      //       repeat: -1,
-      //     });
+      //   animeTl.add({
+      //     targets: '#logo-container',
+      //     opacity: 1,
+      //     complete: () => {
+      //       animationStore.update((value) => {
+      //         return {
+      //           ...value,
+      //           isSectionOneAnimated: true
+      //         }
+      //       })
+      //     }
+      //   }, `-=${fogClearanceTime - 0.5}`)
       //
-      //     introTextTl.fromTo("#intro-theme-text .letter", {
-      //       opacity: 0,
-      //       translateY: 100,
-      //     }, {
-      //       opacity: 1,
-      //       y: 0,
-      //       stagger: 0.2
-      //     })
+      //   animeTl.add({
+      //     targets: '#navbar-wrapper',
+      //     opacity: [0, 1],
+      //     translateY: [100, 0],
+      //     easing: 'easeInQuad'
+      //   })
       //
-      //     introTextTl.to("#intro-theme-text .letter", {
-      //       opacity: 0,
-      //       stagger: 0.1
-      //     })
       //
-      //     introTextTl.fromTo("#intro-date-text .letter", {
-      //       opacity: 0,
-      //       translateY: 100,
-      //     }, {
-      //       opacity: 1,
-      //       translateY: 0,
-      //       stagger: 0.2
-      //     }, '-=2')
+      //   animeTl.add({
+      //     targets: '#nav-logo-text',
+      //     opacity: [0, 1],
+      //     translateY: [100, 0],
+      //     easing: 'easeInQuad'
+      //   })
       //
-      //     introTextTl.to("#intro-date-text .letter", {
-      //       opacity: 0,
-      //       stagger: 0.2
-      //     })
-      //   }
-      // })
-
-      animeTl.add({
-        targets: '.intro-text',
-        opacity: 1
-      })
-
-      // tl.to(".intro-text", {
-      //   opacity: 1
-      // })
-
-      animeTl.add({
-        targets: '.countdown-param',
-        opacity: [0, 1],
-        stagger: anime.stagger(100),
-        easing: 'easeInOutExpo',
-      })
-
-      // tl.fromTo(".countdown-param", 2, {
-      //   opacity: 0,
-      // }, {
-      //   opacity: 1,
-      //   stagger: 0.1,
-      //   ease: Expo.easeInOut
-      // })
-
-      animeTl.add({
-        targets: '.br',
-        opacity: [0, 1],
-        translateY: [100, 0],
-      })
-
-      // tl.fromTo(".br", {
-      //   opacity: 0,
-      //   y: 100
-      // }, {
-      //   opacity: 1,
-      //   y: 0,
-      //   ease: Expo.easeInOut
-      // })
-
-      // tl.fromTo("#events", {
-      //   opacity: 0,
-      //   y: 100
-      // }, {
-      //   opacity: 1,
-      //   y: 0,
-      //   ease: Expo.easeInOut
-      // })
-
-      animeTl.add({
-        targets: '#events',
-        opacity: [0, 1],
-        translateY: [100, 0]
-      })
-
+      //
+      //   animeTl.add({
+      //     targets: "#nav-link-wrapper .link",
+      //     opacity: [0, 1],
+      //     translateY: [50, 0],
+      //     easing: 'easeInQuad',
+      //     delay: anime.stagger(200)
+      //   })
+      //
+      //
+      //   animeTl.add({
+      //     targets: '#intro-text-utsav',
+      //     opacity: [0, 1],
+      //     translateY: [100, 0],
+      //     easing: 'easeInOutExpo'
+      //   })
+      //
+      //   animeTl.add({
+      //     targets: '#utsav-logo',
+      //     opacity: [0, 1],
+      //     translateY: [100, 0],
+      //     easing: 'easeInOutExpo',
+      //     complete: () => {
+      //       const introTextTl = gsap.timeline({
+      //         repeat: -1,
+      //       });
+      //
+      //       introTextTl.fromTo("#intro-theme-text .letter", {
+      //         opacity: 0,
+      //         translateY: 100,
+      //       }, {
+      //         opacity: 1,
+      //         y: 0,
+      //         stagger: 0.2
+      //       })
+      //
+      //
+      //       introTextTl.to("#intro-theme-text .letter", {
+      //         opacity: 0,
+      //         stagger: 0.1
+      //       })
+      //
+      //
+      //       introTextTl.fromTo("#intro-date-text .letter", {
+      //         opacity: 0,
+      //         translateY: 100,
+      //       }, {
+      //         opacity: 1,
+      //         translateY: 0,
+      //         stagger: 0.2
+      //       }, '-=2')
+      //
+      //       introTextTl.to("#intro-date-text .letter", {
+      //         opacity: 0,
+      //         stagger: 0.2
+      //       })
+      //     }
+      //   })
+      //
+      //
+      //   animeTl.add({
+      //     targets: '.intro-text',
+      //     opacity: 1
+      //   })
+      //
+      //
+      //   animeTl.add({
+      //     targets: '.countdown-param',
+      //     opacity: [0, 1],
+      //     stagger: anime.stagger(100),
+      //     easing: 'easeInOutExpo',
+      //   })
+      //
+      //
+      //   animeTl.add({
+      //     targets: '.br',
+      //     opacity: [0, 1],
+      //     translateY: [100, 0],
+      //   })
+      //
+      //
+      //   animeTl.add({
+      //     targets: '#events',
+      //     opacity: [0, 1],
+      //     translateY: [100, 0]
+      //   })
+      //
     }
   })
 
