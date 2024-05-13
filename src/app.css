@@ -5,8 +5,7 @@
 body {
   perspective: 1000px;
   scroll-behavior: smooth;
-  overflow-x: hidden;
-  overflow-y: hidden;
+  overflow: hidden;
 }
 
 ::-webkit-scrollbar {
@@ -81,7 +80,7 @@ body {
   }
 
   .icon-anchor {
-    @apply hover:cursor-pointer hover:scale-[1.2];
+    @apply hover:cursor-pointer;
   }
 
   .hiddenn {
